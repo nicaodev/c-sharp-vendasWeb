@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using VendasWeb.Models.ViewModels;
+using VendasWeb.Models;
 
 namespace VendasWeb.Controllers
 {
