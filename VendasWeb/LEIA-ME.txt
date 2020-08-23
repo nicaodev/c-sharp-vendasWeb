@@ -1,0 +1,4 @@
+Se ocorrer em muitas incompatibilidades, recriar o projeto com versão do .net 2.1! Esta é a 3.0. Model-view-controller.
+
+
+Este projeto utiliza Template Engine. E não Web Services (Front-end back-end.)
