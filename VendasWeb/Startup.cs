@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using VendasWeb.Data;
+using VendasWeb.Services;
 
 namespace VendasWeb
 {
@@ -26,6 +27,7 @@ namespace VendasWeb
                     options.UseSqlServer(Configuration.GetConnectionString("VendasWebContext")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
