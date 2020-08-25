@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using VendasWeb.Models;
 using VendasWeb.Models.Enums;
 
@@ -39,13 +37,11 @@ namespace VendasWeb.Data
             SalesRecord sr4 = new SalesRecord(4, new DateTime(2020, 8, 23), 11000.0, SaleStatus.Billed, s3);
             SalesRecord sr5 = new SalesRecord(5, new DateTime(2020, 8, 23), 26000.0, SaleStatus.Billed, s4);
 
-
             _context.Department.AddRange(d1, d2, d3, d4);
             _context.Seller.AddRange(s1, s2, s3, s4);
             _context.SalesRecords.AddRange(sr1, sr2, sr3, sr4, sr5);
 
             _context.SaveChanges();
         }
-
     }
 }

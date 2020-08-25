@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using VendasWeb.Models.Enums;
 
 namespace VendasWeb.Models
@@ -17,7 +14,6 @@ namespace VendasWeb.Models
 
         public SalesRecord()
         {
-
         }
 
         public SalesRecord(int id, DateTime date, double amount, SaleStatus status, Seller seller)

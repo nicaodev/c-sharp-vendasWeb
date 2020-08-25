@@ -1,6 +1,4 @@
-﻿
-
-namespace VendasWeb.Models.Enums
+﻿namespace VendasWeb.Models.Enums
 {
     public enum SaleStatus : int
     {

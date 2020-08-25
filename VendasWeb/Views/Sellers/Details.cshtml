@@ -7,8 +7,6 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<h3>Quer deletar?</h3>
-
 <div>
     <h4>Seller</h4>
     <hr />
@@ -37,11 +35,15 @@
         <dd>
             @Html.DisplayFor(m => m.BaseSalary)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(m => m.Department)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.Department.Name)
+        </dd>
     </dl>
-
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        <a asp-action="Index">Voltar para lista</a>
-    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info">Editar</a>
+    <a asp-action="Index" class="btn btn-dark">Voltar para lista</a>
 </div>

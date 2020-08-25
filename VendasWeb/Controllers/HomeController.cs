@@ -19,9 +19,9 @@ namespace VendasWeb.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Sobre()
         {
-            ViewData["Message"] = "Respeite a privacidade alheia.";
+            ViewData["Message"] = "https://github.com/nicaodev";
             ViewData["Autor"] = "Nicolas Alexandre.";
 
             return View();

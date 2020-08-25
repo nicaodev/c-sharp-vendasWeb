@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using VendasWeb.Data;
 using VendasWeb.Models;
+using VendasWeb.Services.Exceptions;
 
 namespace VendasWeb.Services
 {
@@ -20,6 +20,7 @@ namespace VendasWeb.Services
         {
             return _context.Seller.ToList();
         }
+
         public void Insert(Seller obj)
         {
             _context.Add(obj);
@@ -28,7 +29,7 @@ namespace VendasWeb.Services
 
         public Seller FindById(int id)
         {
-            return _context.Seller.FirstOrDefault(o => o.Id == id);
+            return _context.Seller.Include(d => d.Department).FirstOrDefault(o => o.Id == id);
         }
 
         public void Remove(int id)
@@ -37,6 +38,22 @@ namespace VendasWeb.Services
 
             _context.Seller.Remove(obj);
             _context.SaveChanges();
+        }
+
+        public void Update(Seller obj)
+        {
+            if (!(_context.Seller.Any(x => x.Id == obj.Id)))
+                throw new NotFoundException("Não existe no banco");
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
+
         }
     }
 }
