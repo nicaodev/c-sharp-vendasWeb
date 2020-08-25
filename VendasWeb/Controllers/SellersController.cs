@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using VendasWeb.Services.Exceptions;
 
 namespace VendasWeb.Controllers
 {
+
     public class SellersController : Controller
     {
         private readonly SellerService _sellerService;
@@ -38,6 +40,13 @@ namespace VendasWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
         {
+            if (!ModelState.IsValid)
+            {
+                var depar = _departmentService.FindAll();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = depar };
+                return View(viewModel);
+            }
+
             _sellerService.Insert(seller);
             return RedirectToAction(nameof(Index));
         }
@@ -77,7 +86,7 @@ namespace VendasWeb.Controllers
             return View(obj);
         }
 
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(int? id) //get
         {
             if (id == null)
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
@@ -96,6 +105,13 @@ namespace VendasWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Seller seller)
         {
+            if (!ModelState.IsValid)
+            {
+                var depar = _departmentService.FindAll();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = depar };
+                return View(viewModel);
+            }
+
             if (id != seller.Id)
                 return RedirectToAction(nameof(Error), new { message = "Ids não correspondem." });
 

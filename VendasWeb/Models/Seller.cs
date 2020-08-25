@@ -8,8 +8,10 @@ namespace VendasWeb.Models
     public class Seller
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
         [DataType(DataType.EmailAddress)]
+        [Required]
         public string Email { get; set; }
         [Display(Name = "Birth Date")]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}")]
@@ -17,6 +19,7 @@ namespace VendasWeb.Models
         public DateTime BirthDate { get; set; }
         [Display(Name = "Base Salary")]
         [DisplayFormat(DataFormatString ="{0:F2}")]
+        [Required]
         public double BaseSalary { get; set; }
 
         public Department Department { get; set; }
