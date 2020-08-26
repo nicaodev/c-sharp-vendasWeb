@@ -29,8 +29,10 @@ namespace VendasWeb
             services.AddDbContext<VendasWebContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("VendasWebContext")));
 
+            //Declarando para poder ser injetado pelo mecanismo de injeção de dependência.
             services.AddScoped<SellerService>();
             services.AddScoped<DepartmentService>();
+            services.AddScoped<SalesRecordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
