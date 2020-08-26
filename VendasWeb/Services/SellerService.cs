@@ -35,10 +35,17 @@ namespace VendasWeb.Services
 
         public async Task Remove(int id)
         {
-            var obj = await _context.Seller.FindAsync(id);
+            try
+            {
+                var obj = await _context.Seller.FindAsync(id);
 
-            _context.Seller.Remove(obj);
-            await _context.SaveChangesAsync();
+                _context.Seller.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new IntegrityException(e.Message + "\n Vendedor(a) não pode ser deletado há vendas relacionadas.");
+            }
         }
 
         public async Task Update(Seller obj)
